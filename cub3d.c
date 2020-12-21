@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:13 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/21 08:25:09 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/21 13:03:42 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void	game_init(t_all *all)
 {
 
-	all->mlx.w = 640;
-	all->mlx.h = 480;
+	all->mlx.w = 1920;
+	all->mlx.h = 1080;
 	all->mlx.mlx = mlx_init();
 	all->mlx.win = mlx_new_window(all->mlx.mlx, all->mlx.w, all->mlx.h, "CUB3D");
 	raycast(all);
@@ -54,6 +54,9 @@ void	struct_init(t_all *all)
 	all->ray.dirY = 0;
 	all->ray.planeX = 0;
 	all->ray.planeY = 0.66;
+
+	all->text.texWidth = 64;
+	all->text.texHeight = 64;
 }
 
 int main(int agrc, char **agrv)
@@ -68,6 +71,7 @@ int main(int agrc, char **agrv)
 	close(fd);
 	struct_init(&all);
 	parser_plr(&all);
+	texture(&all);
 	game_init(&all);
 	return 0;
 }

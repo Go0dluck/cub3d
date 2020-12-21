@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 21:20:28 by goodluck          #+#    #+#             */
-/*   Updated: 2020/12/21 08:29:46 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/21 13:04:46 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,33 @@
 
 void	verline(int x, t_all *all)
 {
-	int y;
+	// int y;
 
-	y = 0;
-	while (y < all->ray.drawStart)
+	// y = 0;
+	// while (y < all->ray.drawStart)
+	// {
+	// 	ft_putpixel(all, x, y, 0x99FFFF);
+	// 	y++;
+	// }
+	// while(all->ray.drawStart < all->ray.drawEnd)
+	// {
+	// 	ft_putpixel(all, x, all->ray.drawStart, 0xCC3300);
+	// 	all->ray.drawStart++;
+	// }
+	// while (all->ray.drawEnd < all->mlx.h)
+	// {
+	// 	ft_putpixel(all, x, all->ray.drawEnd, 0xCCCCCC);
+	// 	all->ray.drawEnd++;
+	// }
+
+	for(int y = all->ray.drawStart; y < all->ray.drawEnd; y++)
 	{
-		ft_putpixel(all, x, y, 0x99FFFF);
-		y++;
+		all->text.texY = (int)all->text.texPos & (all->text.texHeight - 1);
+		all->text.texPos += all->text.step;
+		unsigned int color = all->text.texture[ft_atoi(&all->text.texNum)][all->text.texHeight * all->text.texY + all->text.texX];
+		ft_putpixel(all, x, y, color);
 	}
-	while(all->ray.drawStart < all->ray.drawEnd)
-	{
-		ft_putpixel(all, x, all->ray.drawStart, 0xCC3300);
-		all->ray.drawStart++;
-	}
-	while (all->ray.drawEnd < all->mlx.h)
-	{
-		ft_putpixel(all, x, all->ray.drawEnd, 0xCCCCCC);
-		all->ray.drawEnd++;
-	}
+
 }
 
 void	wall_dist(t_all *all)
@@ -66,7 +75,7 @@ void	hit(t_all *all)
 			all->ray.mapY += all->ray.stepY;
 			all->ray.side = 1;
 		}
-		if (all->map[all->ray.mapY][all->ray.mapX] == '1')
+		if (all->map[all->ray.mapY][all->ray.mapX] == '1' || all->map[all->ray.mapY][all->ray.mapX] == '2')
 		{
 			all->ray.hit = 1;
 		}
@@ -108,6 +117,23 @@ void	ray(int x, t_all *all)
 	all->ray.deltaDistY = (all->ray.rayDirX == 0) ? 0 : ((all->ray.rayDirY == 0) ? 1 : sqrt(1 + (all->ray.rayDirX * all->ray.rayDirX) / (all->ray.rayDirY * all->ray.rayDirY)));
 }
 
+void	texture_draw(t_all *all)
+{
+	all->text.texNum = all->map[all->ray.mapY][all->ray.mapX] - 1;
+	if (all->ray.side == 0)
+		all->text.wallX = all->plr.y + all->ray.perpWallDist * all->ray.rayDirY;
+	else
+		all->text.wallX = all->plr.x + all->ray.perpWallDist * all->ray.rayDirX;
+	all->text.wallX -= floor((all->text.wallX));
+	all->text.texX = (int)(all->text.wallX * (double)all->text.texWidth);
+	if (all->ray.side == 0 && all->ray.rayDirX > 0)
+		all->text.texX = all->text.texWidth - all->text.texX - 1;
+	if (all->ray.side == 1 && all->ray.rayDirY < 0)
+		all->text.texX = all->text.texWidth - all->text.texX - 1;
+	all->text.step = 1.0 * all->text.texHeight / all->ray.lineHeight;
+	all->text.texPos = (all->ray.drawStart - all->mlx.h / 2 + all->ray.lineHeight / 2) * all->text.step;
+}
+
 void	raycast(t_all *all)
 {
 	all->mlx.img = mlx_new_image(all->mlx.mlx, all->mlx.w, all->mlx.h);
@@ -118,6 +144,7 @@ void	raycast(t_all *all)
 		ray_size(all);
 		hit(all);
 		wall_dist(all);
+		texture_draw(all);
 		verline(x, all);
 	}
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->mlx.img, 0, 0);
