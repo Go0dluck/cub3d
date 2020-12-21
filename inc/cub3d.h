@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/21 13:04:32 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/21 23:10:03 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
-# include "./libft/libft.h"
-# include "./minilibx/mlx.h"
+# include "../libft/libft.h"
+//# include "./minilibx/mlx.h"
+# include "../libmlx/mlx.h"
 
 typedef struct	s_text
 {

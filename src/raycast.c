@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 21:20:28 by goodluck          #+#    #+#             */
-/*   Updated: 2020/12/21 13:04:46 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/21 23:19:38 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	hit(t_all *all)
 			all->ray.mapY += all->ray.stepY;
 			all->ray.side = 1;
 		}
-		if (all->map[all->ray.mapY][all->ray.mapX] == '1' || all->map[all->ray.mapY][all->ray.mapX] == '2')
+		if (all->map[all->ray.mapY][all->ray.mapX] == '1' || all->map[all->ray.mapY][all->ray.mapX] == '2' || all->map[all->ray.mapY][all->ray.mapX] == '3' || all->map[all->ray.mapY][all->ray.mapX] == '4'
+		|| all->map[all->ray.mapY][all->ray.mapX] == '5' || all->map[all->ray.mapY][all->ray.mapX] == '6' || all->map[all->ray.mapY][all->ray.mapX] == '7')
 		{
 			all->ray.hit = 1;
 		}

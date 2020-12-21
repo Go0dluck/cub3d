@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:47:21 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/21 08:40:58 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/21 23:17:19 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 
 int		ft_hook(int keycode, t_all *all)
 {
-	if (keycode == 53)
+	//printf("%d\n", keycode);
+	if (keycode == 65307)
+	//if (keycode == 53)
 		exit(0);
-	//printf("%f %f\n", all->plr.x, all->plr.y);
-	if (keycode == 126)
+	if (keycode == 65362)
+	//if (keycode == 126)
 	{
 		if (all->map[(int)all->plr.y][(int)(all->plr.x + all->ray.dirX * moveSpeed)] != '1')
 			all->plr.x += all->ray.dirX * moveSpeed;
 		if (all->map[(int)(all->plr.y + all->ray.dirY * moveSpeed)][(int)all->plr.x] != '1')
 			all->plr.y += all->ray.dirY * moveSpeed;
 	}
-	if (keycode == 125)
+	if (keycode == 65364)
+	//if (keycode == 125)
 	{
 		if (all->map[(int)all->plr.y][(int)(all->plr.x - all->ray.dirX * moveSpeed)] != '1')
 			all->plr.x -= all->ray.dirX * moveSpeed;
 		if (all->map[(int)(all->plr.y - all->ray.dirY * moveSpeed)][(int)all->plr.x] != '1')
 			all->plr.y -= all->ray.dirY * moveSpeed;
 	}
-	if (keycode == 124)
+	if (keycode == 65363)
+	//if (keycode == 124)
 	{
 		double oldDirX = all->ray.dirX;
 		double oldPlaneX = all->ray.planeX;
@@ -40,7 +44,8 @@ int		ft_hook(int keycode, t_all *all)
 		all->ray.planeX = all->ray.planeX * cos(-moveSpeed) - all->ray.planeY * sin(-moveSpeed);
 		all->ray.planeY = oldPlaneX * sin(-moveSpeed) + all->ray.planeY * cos(-moveSpeed);
 	}
-	if (keycode == 123)
+	if (keycode == 65361)
+	//if (keycode == 123)
 	{
 		double oldDirX = all->ray.dirX;
 		double oldPlaneX = all->ray.planeX;

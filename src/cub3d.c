@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:13 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/21 13:03:42 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/21 23:14:00 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 void	game_init(t_all *all)
 {
 
-	all->mlx.w = 1920;
-	all->mlx.h = 1080;
+	all->mlx.w = 640;
+	all->mlx.h = 480;
 	all->mlx.mlx = mlx_init();
 	all->mlx.win = mlx_new_window(all->mlx.mlx, all->mlx.w, all->mlx.h, "CUB3D");
 	raycast(all);
-	mlx_hook(all->mlx.win, 2, 0, ft_hook, all);
+	mlx_hook(all->mlx.win, 2, 1L<<0, ft_hook, all);
 	mlx_loop(all->mlx.mlx);
 }
 

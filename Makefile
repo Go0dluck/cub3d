@@ -5,49 +5,52 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/12/14 12:45:38 by ksharee           #+#    #+#              #
-#    Updated: 2020/12/15 10:04:49 by ksharee          ###   ########.fr        #
+#    Created: 2020/12/21 22:25:57 by ksharee           #+#    #+#              #
+#    Updated: 2020/12/21 23:07:41 by ksharee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= cub3d
+NAME		=	Cub3D
 
-SRCS			= ${wildcard *.c}
+PATH_INC	=	./inc
+PATH_SRC	=	./src
+PATH_OBJ	=	./obj
+PATH_LIBFT	=	libft
+PATH_LIBMLX	=	libmlx
 
-OBJS			= ${SRCS:.c=.o}
+SRCS		=	cub3d.c ft_putpixel.c get_next_line.c hook.c parser.c raycast.c texture.c
+OBJS		=	$(addprefix $(PATH_OBJ)/, $(SRCS:.c=.o))
+INCS		=	$(addprefix $(PATH_INC)/, cub3d.h)
 
-LIBFT 			= libft
-MLX 			= minilibx
+COMP		=	gcc
+COMP_FLAG	=	-Wall -Werror -Wextra
+COMP_ADD	=	-I$(PATH_INC)
 
-CC				= gcc
-CFLAGS 			= -Wall -Wextra -Werror -g
-LFLAGS			= -L libft -lft
+RM			=	/bin/rm
 
-METAL_MLX		= libmlx.dylib -framework Metal -framework AppKit
+all:		init $(NAME)
 
-RM				= rm -f
+init:
+	@ echo "$(_INFO) Initialize $(NAME)"
+	@ $(shell mkdir -p $(PATH_OBJ))
+	@ make -C $(PATH_LIBFT)
+	@ make -C $(PATH_LIBMLX)
 
-all:			$(NAME)
+$(NAME):	$(OBJS) $(INCS)
+	@ $(COMP) $(COMP_FLAG) $(COMP_ADD) -o $(NAME) $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lXext
 
-$(NAME):		$(OBJS)
-				make -s -C $(MLX)
-				mv $(MLX)/libmlx.dylib .
-				make -s -C $(LIBFT)
-				$(CC) $(CFLAGS) $(LFLAGS) $(METAL_MLX) -I . $(OBJS) -o $(NAME)
-
-%.o: %.c
-				$(CC) $(CFLAGS) -I . -o $@ -c $<
+$(PATH_OBJ)/%.o: $(PATH_SRC)/%.c $(INCS)
+	@ $(COMP) $(COMP_FLAG) $(COMP_ADD) -c $< -o $@
+	@ echo "$(_INFO) Compilation of $*"
 
 clean:
-				$(RM) $(OBJS)
-				make clean -C $(MLX)
-				make clean -C $(LIBFT)
+	@ $(RM) -rf $(PATH_OBJ)
+	@ make -C $(PATH_LIBFT) clean
+	@ make -C $(PATH_LIBMLX) clean
+	@ echo "$(_INFO) Deleted files and directory"
 
-fclean:			clean
-				$(RM) $(NAME)
-				$(RM) libmlx.dylib
-				make fclean -C $(LIBFT)
+fclean: clean
+	@ $(RM) -rf $(NAME)
+	@ make -C $(PATH_LIBFT) fclean
 
-re:				fclean all
-
-.PHONY: 		all fclean clean re
+re: fclean all
