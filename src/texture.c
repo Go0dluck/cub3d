@@ -6,11 +6,11 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 08:58:21 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/21 12:20:54 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/22 09:42:10 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../inc/cub3d.h"
 
 void	texture(t_all *all)
 {
@@ -37,7 +37,6 @@ void	texture(t_all *all)
 			all->text.texture[6][all->text.texWidth * y + x] = 65536 * ycolor; //red gradient
 			all->text.texture[7][all->text.texWidth * y + x] = 128 + 256 * 128 + 65536 * 128; //flat grey texture
 		}
-
 	}
 
 }

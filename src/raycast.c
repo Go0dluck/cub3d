@@ -6,32 +6,18 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 21:20:28 by goodluck          #+#    #+#             */
-/*   Updated: 2020/12/21 23:19:38 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/22 16:35:22 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../inc/cub3d.h"
 
 void	verline(int x, t_all *all)
 {
-	// int y;
-
-	// y = 0;
-	// while (y < all->ray.drawStart)
-	// {
-	// 	ft_putpixel(all, x, y, 0x99FFFF);
-	// 	y++;
-	// }
-	// while(all->ray.drawStart < all->ray.drawEnd)
-	// {
-	// 	ft_putpixel(all, x, all->ray.drawStart, 0xCC3300);
-	// 	all->ray.drawStart++;
-	// }
-	// while (all->ray.drawEnd < all->mlx.h)
-	// {
-	// 	ft_putpixel(all, x, all->ray.drawEnd, 0xCCCCCC);
-	// 	all->ray.drawEnd++;
-	// }
+	for(int y = 0; y < all->ray.drawStart; y++)
+	{
+		ft_putpixel(all, x, y, 0x202020);
+	}
 
 	for(int y = all->ray.drawStart; y < all->ray.drawEnd; y++)
 	{
@@ -39,6 +25,10 @@ void	verline(int x, t_all *all)
 		all->text.texPos += all->text.step;
 		unsigned int color = all->text.texture[ft_atoi(&all->text.texNum)][all->text.texHeight * all->text.texY + all->text.texX];
 		ft_putpixel(all, x, y, color);
+	}
+	for(int y = all->ray.drawEnd; y < all->mlx.h; y++)
+	{
+		ft_putpixel(all, x, y, 0xFFFFFF);
 	}
 
 }

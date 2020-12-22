@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/21 23:10:03 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/22 15:45:22 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,19 @@
 # include <fcntl.h>
 # include <math.h>
 # include "../libft/libft.h"
-//# include "./minilibx/mlx.h"
-# include "../libmlx/mlx.h"
+# include "../minilibx/mlx.h"
+//# include "../libmlx/mlx.h"
 
 typedef struct	s_text
 {
+	void		*img;
+	int			img_w;
+	int			img_h;
+	void		*addr;
+	char		*img_path;
+	int			line_length;
+	int			bits_per_pixel;
+	int			endian;
 	int			texWidth;
 	int			texHeight;
 	int			texX;

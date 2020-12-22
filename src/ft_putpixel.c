@@ -6,11 +6,11 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 13:50:25 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/17 11:14:19 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/22 09:41:09 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../inc/cub3d.h"
 
 void	ft_putpixel(t_all *all, int x, int y, int color)
 {
