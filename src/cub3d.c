@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:13 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/22 16:06:38 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/23 17:41:37 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	game_init(t_all *all)
 {
-	all->mlx.w = 1920;
-	all->mlx.h = 1080;
+	all->mlx.w = 640;
+	all->mlx.h = 480;
 	all->text.img_path = "./pics/redbrick.xpm";
 	all->mlx.mlx = mlx_init();
 	all->mlx.win = mlx_new_window(all->mlx.mlx, all->mlx.w, all->mlx.h, "CUB3D");

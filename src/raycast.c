@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 21:20:28 by goodluck          #+#    #+#             */
-/*   Updated: 2020/12/22 16:35:22 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/23 17:41:44 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	verline(int x, t_all *all)
 	{
 		ft_putpixel(all, x, y, 0x202020);
 	}
-
 	for(int y = all->ray.drawStart; y < all->ray.drawEnd; y++)
 	{
 		all->text.texY = (int)all->text.texPos & (all->text.texHeight - 1);
@@ -139,4 +138,5 @@ void	raycast(t_all *all)
 		verline(x, all);
 	}
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->mlx.img, 0, 0);
+	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->text.img, 0, 0);
 }
