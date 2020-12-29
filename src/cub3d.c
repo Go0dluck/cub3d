@@ -6,7 +6,11 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:13 by ksharee           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/12/29 14:35:34 by ksharee          ###   ########.fr       */
+=======
+/*   Updated: 2020/12/23 17:41:37 by ksharee          ###   ########.fr       */
+>>>>>>> 3653071332f474e80bebaf88c0a9d78da8a18f80
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +19,8 @@
 
 void	game_init(t_all *all)
 {
-	all->mlx.w = 1920;
-	all->mlx.h = 1080;
+	all->mlx.w = 640;
+	all->mlx.h = 480;
 	all->text.img_path = "./pics/redbrick.xpm";
 	all->text1.img_path = "./pics/greystone.xpm";
 	all->mlx.mlx = mlx_init();

@@ -6,7 +6,11 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 21:20:28 by goodluck          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/12/29 14:31:03 by ksharee          ###   ########.fr       */
+=======
+/*   Updated: 2020/12/23 17:41:44 by ksharee          ###   ########.fr       */
+>>>>>>> 3653071332f474e80bebaf88c0a9d78da8a18f80
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +24,6 @@ void	verline(int x, t_all *all)
 	{
 		ft_putpixel(all, x, y, 0x202020);
 	}
-
 	for(int y = all->ray.drawStart; y < all->ray.drawEnd; y++)
 	{
 
@@ -145,4 +148,5 @@ void	raycast(t_all *all)
 		verline(x, all);
 	}
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->mlx.img, 0, 0);
+	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->text.img, 0, 0);
 }
