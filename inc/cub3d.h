@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/22 15:45:22 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/29 12:10:14 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct	s_all
 	t_mlx	mlx;
 	t_ray	ray;
 	t_text	text;
+	t_text	text1;
 }				t_all;
 
 void 	parser_file(int fd, t_all *all);

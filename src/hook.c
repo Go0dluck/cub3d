@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:47:21 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/22 16:25:45 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/29 14:32:59 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 int		ft_hook(int keycode, t_all *all)
 {
 	//printf("%d\n", keycode);
-	if (keycode == 13)
-		all->ray.planeX += 0.1;
-	if (keycode == 1)
-		all->ray.planeY += 0.1;
-	if (keycode == 0)
-		all->ray.dirX += 0.1;
-	if (keycode == 2)
-		all->ray.dirY += 0.1;
 	//if (keycode == 65307)
 	if (keycode == 53)
 		exit(0);

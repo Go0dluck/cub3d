@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/19 21:20:28 by goodluck          #+#    #+#             */
-/*   Updated: 2020/12/22 16:35:22 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/29 14:31:03 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	verline(int x, t_all *all)
 {
+	unsigned int color = 0;
+
 	for(int y = 0; y < all->ray.drawStart; y++)
 	{
 		ft_putpixel(all, x, y, 0x202020);
@@ -21,14 +23,18 @@ void	verline(int x, t_all *all)
 
 	for(int y = all->ray.drawStart; y < all->ray.drawEnd; y++)
 	{
+
 		all->text.texY = (int)all->text.texPos & (all->text.texHeight - 1);
 		all->text.texPos += all->text.step;
-		unsigned int color = all->text.texture[ft_atoi(&all->text.texNum)][all->text.texHeight * all->text.texY + all->text.texX];
+		if (all->text.texNum == '0')
+			color = (*(int *)(all->text.addr + ((all->text.texX + (all->text.texY * 64)) * (all->text.bits_per_pixel / 8))));
+		else if (all->text.texNum == '1')
+			color = (*(int *)(all->text1.addr + ((all->text.texX + (all->text.texY * 64)) * (all->text1.bits_per_pixel / 8))));
 		ft_putpixel(all, x, y, color);
 	}
 	for(int y = all->ray.drawEnd; y < all->mlx.h; y++)
 	{
-		ft_putpixel(all, x, y, 0xFFFFFF);
+		ft_putpixel(all, x, y, 0x202020);
 	}
 
 }

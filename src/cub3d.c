@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:13 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/22 16:06:38 by ksharee          ###   ########.fr       */
+/*   Updated: 2020/12/29 14:35:34 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@ void	game_init(t_all *all)
 	all->mlx.w = 1920;
 	all->mlx.h = 1080;
 	all->text.img_path = "./pics/redbrick.xpm";
+	all->text1.img_path = "./pics/greystone.xpm";
 	all->mlx.mlx = mlx_init();
 	all->mlx.win = mlx_new_window(all->mlx.mlx, all->mlx.w, all->mlx.h, "CUB3D");
 	all->text.img = mlx_xpm_file_to_image(all->mlx.mlx, all->text.img_path, &all->text.img_w, &all->text.img_h);
 	all->text.addr = mlx_get_data_addr(all->text.img, &all->text.bits_per_pixel, &all->text.line_length, &all->text.endian);
+
+	all->text1.img = mlx_xpm_file_to_image(all->mlx.mlx, all->text1.img_path, &all->text.img_w, &all->text.img_h);
+	all->text1.addr = mlx_get_data_addr(all->text1.img, &all->text1.bits_per_pixel, &all->text1.line_length, &all->text1.endian);
+
 	raycast(all);
 	mlx_hook(all->mlx.win, 2, 1L<<0, ft_hook, all);
 	mlx_loop(all->mlx.mlx);
