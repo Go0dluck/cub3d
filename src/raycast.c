@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:41:01 by ksharee           #+#    #+#             */
-/*   Updated: 2020/12/29 16:58:21 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/01 22:52:07 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,28 @@
 void	verline(int x, t_all *all)
 {
 	unsigned int color = 0;
-	//write(1, "HELLO\n", 6);
+
 	for(int y = 0; y < all->ray.drawStart; y++)
 	{
-		ft_putpixel(all, x, y, 0x202020);
+		ft_putpixel(all, x, y, create_rgb_c(all));
 	}
 	for(int y = all->ray.drawStart; y < all->ray.drawEnd; y++)
 	{
-
-		all->text.texY = (int)all->text.texPos & (all->text.texHeight - 1);
-		all->text.texPos += all->text.step;
+		all->text_set.texY = (int)all->text_set.texPos & (all->text_set.texHeight - 1);
+		all->text_set.texPos += all->text_set.step;
 		if (all->ray.side == 0)
-			color = (*(int *)(all->text.addr + ((all->text.texX + (all->text.texY * 64)) * (all->text.bits_per_pixel / 8))));
+			color = (*(int *)(all->text_no.addr + ((all->text_set.texX + (all->text_set.texY * 64)) * (all->text_no.bits_per_pixel / 8))));
 		else if (all->ray.side == 1)
-			color = (*(int *)(all->text1.addr + ((all->text.texX + (all->text.texY * 64)) * (all->text1.bits_per_pixel / 8))));
+			color = (*(int *)(all->text_so.addr + ((all->text_set.texX + (all->text_set.texY * 64)) * (all->text_so.bits_per_pixel / 8))));
 		else if (all->ray.side == 2)
-			color = (*(int *)(all->text2.addr + ((all->text.texX + (all->text.texY * 64)) * (all->text1.bits_per_pixel / 8))));
+			color = (*(int *)(all->text_we.addr + ((all->text_set.texX + (all->text_set.texY * 64)) * (all->text_we.bits_per_pixel / 8))));
 		else if (all->ray.side == 3)
-			color = (*(int *)(all->text3.addr + ((all->text.texX + (all->text.texY * 64)) * (all->text1.bits_per_pixel / 8))));
+			color = (*(int *)(all->text_ea.addr + ((all->text_set.texX + (all->text_set.texY * 64)) * (all->text_ea.bits_per_pixel / 8))));
 		ft_putpixel(all, x, y, color);
 	}
 	for(int y = all->ray.drawEnd; y < all->mlx.h; y++)
 	{
-		ft_putpixel(all, x, y, 0x202020);
+		ft_putpixel(all, x, y, create_rgb_f(all));
 	}
 
 }
@@ -126,21 +125,21 @@ void	ray(int x, t_all *all)
 	all->ray.deltaDistY = fabs(1 / all->ray.rayDirY);
 }
 
-void	texture_draw(t_all *all)
+void	texture_seting(t_all *all)
 {
-	//all->text.texNum = all->map[all->ray.mapY][all->ray.mapX] - 1;
+	//all->text_set.texNum = all->map[all->ray.mapY][all->ray.mapX] - 1;
 	if (all->ray.side == 0 || all->ray.side == 1)
-		all->text.wallX = all->plr.y + all->ray.perpWallDist * all->ray.rayDirY;
+		all->text_set.wallX = all->plr.y + all->ray.perpWallDist * all->ray.rayDirY;
 	else
-		all->text.wallX = all->plr.x + all->ray.perpWallDist * all->ray.rayDirX;
-	all->text.wallX -= floor((all->text.wallX));
-	all->text.texX = (int)(all->text.wallX * (double)all->text.texWidth);
+		all->text_set.wallX = all->plr.x + all->ray.perpWallDist * all->ray.rayDirX;
+	all->text_set.wallX -= floor((all->text_set.wallX));
+	all->text_set.texX = (int)(all->text_set.wallX * (double)all->text_set.texWidth);
 	if ((all->ray.side == 0 || all->ray.side == 1) && all->ray.rayDirX > 0)
-		all->text.texX = all->text.texWidth - all->text.texX - 1;
+		all->text_set.texX = all->text_set.texWidth - all->text_set.texX - 1;
 	if ((all->ray.side == 2 || all->ray.side == 3) && all->ray.rayDirY < 0)
-		all->text.texX = all->text.texWidth - all->text.texX - 1;
-	all->text.step = 1.0 * all->text.texHeight / all->ray.lineHeight;
-	all->text.texPos = (all->ray.drawStart - all->mlx.h / 2 + all->ray.lineHeight / 2) * all->text.step;
+		all->text_set.texX = all->text_set.texWidth - all->text_set.texX - 1;
+	all->text_set.step = 1.0 * all->text_set.texHeight / all->ray.lineHeight;
+	all->text_set.texPos = (all->ray.drawStart - all->mlx.h / 2 + all->ray.lineHeight / 2) * all->text_set.step;
 }
 
 void	raycast(t_all *all)
@@ -153,7 +152,7 @@ void	raycast(t_all *all)
 		ray_size(all);
 		hit(all);
 		wall_dist(all);
-		texture_draw(all);
+		texture_seting(all);
 		verline(x, all);
 	}
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->mlx.img, 0, 0);
