@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 21:21:29 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/01 22:25:54 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/03 21:30:22 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	free_struct(t_all *all)
 	free(all->text_so.img_path);
 	free(all->text_we.img_path);
 	free(all->text_ea.img_path);
+	mlx_destroy_window(all->mlx.mlx, all->mlx.win);
+	free(all->mlx.mlx);
 	//free(all->sprite.img_path);
 }
 

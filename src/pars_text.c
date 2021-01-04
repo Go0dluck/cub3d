@@ -6,11 +6,19 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:25:27 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/02 12:46:49 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/03 23:14:45 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+void	set_text_sprite(t_all *all, char *path)
+{
+	all->sprite.img = mlx_xpm_file_to_image(all->mlx.mlx, path, &all->sprite.img_w, &all->sprite.img_h);
+	all->sprite.img == NULL ? ft_error("Ошибка открытия файла SPRITE текстуры") : 0;
+	all->sprite.addr = mlx_get_data_addr(all->sprite.img, &all->sprite.bits_per_pixel,
+		&all->sprite.line_length, &all->sprite.endian);
+}
 
 void	set_text_no(t_all *all, char *path)
 {
@@ -59,7 +67,8 @@ void	pars_texture_path(char **str, t_all *all)
 			set_text_we(all, all->text_we.img_path = ft_strdup(str[1]));
 		else if (ft_strcmp(str[0], "EA") == 0)
 			set_text_ea(all, all->text_ea.img_path = ft_strdup(str[1]));
-		//ft_strcmp(str[0], "S") == 0 ? all->sprite.img_path = ft_strdup(str[1]) : 0;
+		else if (ft_strcmp(str[0], "S") == 0)
+			set_text_sprite(all, all->sprite.img_path = ft_strdup(str[1]));
 	}
 	else
 		ft_error("Не верные параметры текстур");

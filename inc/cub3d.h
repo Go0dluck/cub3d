@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/01 23:29:47 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/04 00:06:39 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@
 # include "../libft/libft.h"
 //# include "../minilibx/mlx.h"
 # include "../libmlx/mlx.h"
+
+typedef struct	s_sprite
+{
+	double			x;
+	double			y;
+	struct s_sprite	*next;
+}				t_sprite;
 
 typedef struct	s_color
 {
@@ -71,6 +78,7 @@ typedef struct	s_ray
 	double	sideDistX;
 	double	sideDistY;
 	double	perpWallDist;
+	double	*zBuffer;
 	int		mapX;
 	int		mapY;
 	int		stepX;
@@ -116,6 +124,7 @@ typedef struct	s_all
 	t_text	text_we;
 	t_text	text_ea;
 	t_text	sprite;
+	t_sprite *sprites;
 	t_color col_f;
 	t_color col_c;
 }				t_all;
@@ -133,6 +142,7 @@ void	free_struct(t_all *all);
 void	free_map(t_all *all);
 int		create_rgb_f(t_all *all);
 int		create_rgb_c(t_all *all);
+void	ft_spritenew(t_all *all);
 
 //PARSER
 void	parser_file(int fd, t_all *all);

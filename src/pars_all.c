@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:19:35 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/02 12:42:21 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/03 23:16:09 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parser_file(int fd, t_all *all)
 	int		gnl;
 
 	all->size_param = 0;
-	while (all->size_param != 7)
+	while (all->size_param != 8)
 	{
 		if ((gnl = get_next_line(fd, &line)) <= 0)
 		{
@@ -33,13 +33,13 @@ void	parser_file(int fd, t_all *all)
 		}
 		str = ft_split(line, ' ');
 		free(line);
-		ft_strcmp(str[0], "R") == 0 ? pars_resolution(str, all) : 0;
-		ft_strcmp(str[0], "F") == 0 ? pars_floor(str, all) : 0;
-		ft_strcmp(str[0], "C") == 0 ? pars_ceilling(str, all) : 0;
+		ft_strcmp(str[0], "R") == 0 ? pars_resolution(str, all) : 0; // парсим размер окна
+		ft_strcmp(str[0], "F") == 0 ? pars_floor(str, all) : 0; // парсим цвет пола
+		ft_strcmp(str[0], "C") == 0 ? pars_ceilling(str, all) : 0; // парим цвет потолка
 		ft_strcmp(str[0], "NO") == 0 || ft_strcmp(str[0], "SO") == 0 ||
 			ft_strcmp(str[0], "WE") == 0 || ft_strcmp(str[0], "EA") == 0 ||
-			ft_strcmp(str[0], "S") == 0 ? pars_texture_path(str, all) : 0;
+			ft_strcmp(str[0], "S") == 0 ? pars_texture_path(str, all) : 0; // парсим путь до текстур
 		free_split(str);
 	}
-	parser_file_map(fd, all);
+	parser_file_map(fd, all); // парсер карты
 }

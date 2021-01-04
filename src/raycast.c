@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:41:01 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/01 22:52:07 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/04 19:31:58 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	hit(t_all *all)
 		{
 			all->ray.sideDistX += all->ray.deltaDistX;
 			all->ray.mapX += all->ray.stepX;
-			//all->ray.side = 0;
 			if (all->ray.stepX == 1)
 				all->ray.side = 0;
 			else if (all->ray.stepX == -1)
@@ -75,16 +74,13 @@ void	hit(t_all *all)
 		{
 			all->ray.sideDistY += all->ray.deltaDistY;
 			all->ray.mapY += all->ray.stepY;
-			//all->ray.side = 1;
 			if (all->ray.stepY == 1)
 				all->ray.side = 2;
 			else if (all->ray.stepY == -1)
 				all->ray.side = 3;
 		}
-		if (all->map[all->ray.mapY][all->ray.mapX] == '1')
-		{
+		if (all->map[all->ray.mapY][all->ray.mapX] > '0')
 			all->ray.hit = 1;
-		}
 	}
 }
 
@@ -119,15 +115,12 @@ void	ray(int x, t_all *all)
 	all->ray.rayDirY = all->ray.dirY + all->ray.planeY * all->ray.cameraX;
 	all->ray.mapX = (int)all->plr.x;
 	all->ray.mapY = (int)all->plr.y;
-	//all->ray.deltaDistX = (all->ray.rayDirY == 0) ? 0 : ((all->ray.rayDirX == 0) ? 1 : sqrt(1 + (all->ray.rayDirY * all->ray.rayDirY) / (all->ray.rayDirX * all->ray.rayDirX)));
-	//all->ray.deltaDistY = (all->ray.rayDirX == 0) ? 0 : ((all->ray.rayDirY == 0) ? 1 : sqrt(1 + (all->ray.rayDirX * all->ray.rayDirX) / (all->ray.rayDirY * all->ray.rayDirY)));
 	all->ray.deltaDistX = fabs(1 / all->ray.rayDirX);
 	all->ray.deltaDistY = fabs(1 / all->ray.rayDirY);
 }
 
 void	texture_seting(t_all *all)
 {
-	//all->text_set.texNum = all->map[all->ray.mapY][all->ray.mapX] - 1;
 	if (all->ray.side == 0 || all->ray.side == 1)
 		all->text_set.wallX = all->plr.y + all->ray.perpWallDist * all->ray.rayDirY;
 	else
@@ -146,14 +139,17 @@ void	raycast(t_all *all)
 {
 	all->mlx.img = mlx_new_image(all->mlx.mlx, all->mlx.w, all->mlx.h);
 	all->mlx.addr = mlx_get_data_addr(all->mlx.img, &all->mlx.bits_per_pixel, &all->mlx.line_length, &all->mlx.endian);
+	all->ray.zBuffer = malloc(sizeof(double) * all->mlx.w);
 	for (int x = 0; x < all->mlx.w; x++)
 	{
 		ray(x, all);
 		ray_size(all);
 		hit(all);
 		wall_dist(all);
+		all->ray.zBuffer[x] = all->ray.perpWallDist;
 		texture_seting(all);
 		verline(x, all);
 	}
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->mlx.img, 0, 0);
+	free(all->ray.zBuffer);
 }
