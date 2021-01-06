@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 21:21:29 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/05 21:02:33 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/06 19:09:38 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,21 @@ void	free_struct(t_all *all)
 	free(all->t_ea.path);
 	free(all->t_spr.path);
 	free(all->sprs);
-	mlx_destroy_image(all->mlx.mlx, all->t_spr.img);
-	mlx_destroy_image(all->mlx.mlx, all->t_no.img);
-	mlx_destroy_image(all->mlx.mlx, all->t_so.img);
-	mlx_destroy_image(all->mlx.mlx, all->t_we.img);
-	mlx_destroy_image(all->mlx.mlx, all->t_ea.img);
-	mlx_destroy_window(all->mlx.mlx, all->mlx.win);
+	all->t_spr.img != NULL ?
+		mlx_destroy_image(all->mlx.mlx, all->t_spr.img) : 0;
+	all->t_no.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_no.img) : 0;
+	all->t_so.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_so.img) : 0;
+	all->t_we.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_we.img) : 0;
+	all->t_ea.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_ea.img) : 0;
 	free(all->mlx.mlx);
 }
 
 void	free_map(t_all *all)
 {
-	while (all->size_map)
-		free(all->map[--all->size_map]);
-	free(all->map);
+	if (all->map != NULL)
+	{
+		while (all->size_map)
+			free(all->map[--all->size_map]);
+		free(all->map);
+	}
 }

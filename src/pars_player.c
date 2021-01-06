@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:29:12 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/05 22:25:43 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/06 18:23:15 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	parser_player(t_all *all)
 				all->map[y][x] == 'E' || all->map[y][x] == 'W')
 			{
 				all->plr.position == '0' ? all->plr.position = all->map[y][x]
-					: ft_error("Error\nНесколько игроков на карте");
+					: ft_error("Несколько игроков на карте", all);
 				all->plr.x = (double)x + 0.5;
 				all->plr.y = (double)y + 0.5;
 				init_player(all);
@@ -72,5 +72,5 @@ void	parser_player(t_all *all)
 		}
 		y++;
 	}
-	all->plr.position == '0' ? ft_error("Error\nНет игрока на карте") : 0;
+	all->plr.position == '0' ? ft_error("Нет игрока на карте", all) : 0;
 }

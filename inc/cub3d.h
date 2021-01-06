@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/05 23:33:40 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/06 21:20:21 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@
 # include "../libft/libft.h"
 //# include "../minilibx/mlx.h"
 # include "../libmlx/mlx.h"
+
+typedef struct		s_bmp
+{
+	int				file_size;
+	int				unused;
+	int				offset;
+	int				header;
+	int				plane;
+	int				bpp;
+}					t_bmp;
 
 typedef struct		s_sprite
 {
@@ -151,11 +161,12 @@ typedef struct		s_all
 	t_sprite_set	spr_s;
 	t_color			col_f;
 	t_color			col_c;
+	t_bmp			bmp;
 }					t_all;
 
 void				parser_file_map(int fd, t_all *all);
 int					get_next_line(int fd, char **line);
-void				ft_error(char *str);
+void				ft_error(char *str, t_all *all);
 void				raycast(t_all *all);
 int					ft_hook(int keycode, t_all *all);
 void				ft_putpixel(t_all *all, int x, int y, int color);
@@ -167,13 +178,14 @@ void				free_map(t_all *all);
 int					create_rgb_f(t_all *all);
 int					create_rgb_c(t_all *all);
 void				draw_sprites(t_all *all);
-void				save_bitmap(t_all *all);
+void				save_screen(t_all *all);
 void				draw_vertical_sprite(t_all *all);
 void				sort_sprites(t_all *all);
-void				check_line_map(char *str_map);
+void				check_line_map(char *str_map, t_all *all);
 void				set_text_sprite(t_all *all, char *path);
 void				texture_seting(t_all *all);
 void				verline(int x, t_all *all);
+int					ft_isnum(char *str);
 
 void				parser_file(int fd, t_all *all);
 void				pars_resolution(char **str, t_all *all);

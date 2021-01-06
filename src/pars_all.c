@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:19:35 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/05 22:24:46 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/06 18:19:00 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parser_file(int fd, t_all *all)
 		if ((gnl = get_next_line(fd, &line)) <= 0)
 		{
 			free(line);
-			ft_error("Error\nНе верное количество параметров");
+			ft_error("Не верное количество параметров", all);
 		}
 		if (line[0] == '\n' || line[0] == '\0')
 		{

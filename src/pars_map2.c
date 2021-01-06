@@ -6,13 +6,13 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:07:11 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/06 10:19:18 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/06 18:22:56 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	check_char_map(char **str, int i, int ii)
+void	check_char_map(char **str, int i, int ii, t_all *all)
 {
 	while (str[i][++ii])
 	{
@@ -22,12 +22,12 @@ void	check_char_map(char **str, int i, int ii)
 			str[i][ii] != 'W' && str[i][ii] != 'E')
 		{
 			free_split(str);
-			ft_error("Error\nНе допустимые символы в карте");
+			ft_error("Не допустимые символы в карте", all);
 		}
 	}
 }
 
-void	check_line_map(char *str_map)
+void	check_line_map(char *str_map, t_all *all)
 {
 	char	**str;
 	int		i;
@@ -41,10 +41,10 @@ void	check_line_map(char *str_map)
 		if (str[i][0] != '1' || str[i][ft_strlen(str[i]) - 1] != '1')
 		{
 			free_split(str);
-			ft_error("Error\nКарта не закрыта");
+			ft_error("Карта не закрыта", all);
 		}
 		ii = -1;
-		check_char_map(str, i, ii);
+		check_char_map(str, i, ii, all);
 	}
 	free_split(str);
 }

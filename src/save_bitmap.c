@@ -6,98 +6,65 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 16:57:27 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/05 20:33:31 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/06 21:30:21 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static void	data_to_bitmap(t_all *all, int fd)
+void	init_bmp(t_all *all)
 {
-	int i;
-
-	i = all->mlx.w * all->mlx.h - 1;
-	while (i >= 0)
-	{
-		write(fd, &all->mlx.addr[i * all->mlx.bits_per_pixel / 8], 4);
-		i--;
-	}
+	all->bmp.file_size = 54 + (all->mlx.w * all->mlx.h) * 4;
+	all->bmp.unused = 0;
+	all->bmp.offset = 54;
+	all->bmp.header = 40;
+	all->bmp.plane = 1;
+	all->bmp.bpp = 32;
 }
 
-static void	mir_verti_pixel(t_all *all, int line_cnt, int *e, int f)
+void	write_text(t_all *all, int fd)
 {
-	char	save;
-	int		k;
+	int	x;
+	int	y;
+	int	line;
 
-	k = 3;
-	while (k >= 0)
+	y = 0;
+	while (y < all->mlx.h)
 	{
-		save = all->mlx.addr[*e + (line_cnt * all->mlx.line_length)];
-		all->mlx.addr[*e + (line_cnt * all->mlx.line_length)] =
-			all->mlx.addr[f - k + (line_cnt * all->mlx.line_length - 1)];
-		all->mlx.addr[f - k + (line_cnt * all->mlx.line_length - 1)] =
-			save;
-		k--;
-		*e = *e + 1;
-	}
-}
-
-void		mir_verti(t_all *all)
-{
-	int		line_cnt;
-	int		e;
-	int		f;
-
-	line_cnt = 0;
-	while (line_cnt < all->mlx.h)
-	{
-		e = 0;
-		f = all->mlx.line_length;
-		while (e < f && e != f)
+		x = 0;
+		line = all->mlx.w * (all->mlx.h - y);
+		while (x < all->mlx.w)
 		{
-			mir_verti_pixel(all, line_cnt, &e, f);
-			f -= 4;
+			write(fd, &all->mlx.addr[line * 4], 4);
+			line++;
+			x++;
 		}
-		line_cnt++;
+		y++;
 	}
 }
 
-void		bitmap_info_header(t_all *all, int fd)
-{
-	int header_info_size;
-	int plane_nbr;
-	int o_count;
-
-	header_info_size = 40;
-	plane_nbr = 1;
-	write(fd, &header_info_size, 4);
-	write(fd, &all->mlx.w, 4);
-	write(fd, &all->mlx.h, 4);
-	write(fd, &plane_nbr, 2);
-	write(fd, &all->mlx.bits_per_pixel, 2);
-	o_count = 0;
-	while (o_count < 28)
-	{
-		write(fd, "\0", 1);
-		o_count++;
-	}
-}
-
-void		save_bitmap(t_all *all)
+void	save_screen(t_all *all)
 {
 	int	fd;
-	int file_size;
-	int first_pix;
+	int	i;
 
-	fd = open("bitmap.bmp", O_CREAT | O_RDWR);
-	file_size = 14 + 40 + 4 + (all->mlx.w * all->mlx.h) * 4;
-	first_pix = 14 + 40 + 4;
+	i = 0;
+	fd = open("screen.bmp", O_CREAT | O_RDWR);
+	init_bmp(all);
 	write(fd, "BM", 2);
-	write(fd, &file_size, 4);
-	write(fd, "\0\0\0\0", 4);
-	write(fd, &first_pix, 4);
-	bitmap_info_header(all, fd);
-	mir_verti(all);
-	data_to_bitmap(all, fd);
+	write(fd, &all->bmp.file_size, 4);
+	write(fd, &all->bmp.unused, 4);
+	write(fd, &all->bmp.offset, 4);
+	write(fd, &all->bmp.header, 4);
+	write(fd, &all->mlx.w, 4);
+	write(fd, &all->mlx.h, 4);
+	write(fd, &all->bmp.plane, 2);
+	write(fd, &all->bmp.bpp, 2);
+	while (i <= 6)
+	{
+		write(fd, &all->bmp.unused, 4);
+		i++;
+	}
+	write_text(all, fd);
 	close(fd);
 }

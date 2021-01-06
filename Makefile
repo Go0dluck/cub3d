@@ -6,7 +6,7 @@
 #    By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/21 22:25:57 by ksharee           #+#    #+#              #
-#    Updated: 2021/01/05 21:16:08 by ksharee          ###   ########.fr        #
+#    Updated: 2021/01/06 19:18:56 by ksharee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS		=	cub3d.c ft_putpixel.c get_next_line.c hook.c \
 				pars_map.c raycast.c ft_error.c free_all.c rgb_color.c \
 				pars_all.c pars_ceilling_color.c pars_floor_color.c pars_resolution.c pars_text.c \
 				pars_player.c pars_sprites.c draw_sprites.c draw_sprites2.c save_bitmap.c \
-				pars_map2.c raycast2.c
+				pars_map2.c raycast2.c ft_isnum.c
 OBJS		=	$(addprefix $(PATH_OBJ)/, $(SRCS:.c=.o))
 INCS		=	$(addprefix $(PATH_INC)/, cub3d.h)
 

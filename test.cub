@@ -1,6 +1,6 @@
 R 1024 768
-F 220,100,0
-C 255,30,0
+F 255,0,0
+C 255,0,0
 NO ./pics/redbrick.xpm
 SO ./pics/greystone.xpm
 WE ./pics/wood.xpm

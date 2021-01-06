@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_isnum.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/29 23:13:56 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/06 18:48:30 by ksharee          ###   ########.fr       */
+/*   Created: 2021/01/06 19:18:32 by ksharee           #+#    #+#             */
+/*   Updated: 2021/01/06 19:27:33 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void	ft_error(char *str, t_all *all)
+int		ft_isnum(char *str)
 {
-	write(2, "Error\n", 6);
-	while (*str)
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		write(2, str, 1);
-		str++;
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (1);
+		i++;
 	}
-	write(2, "\n", 1);
-	free_struct(all);
-	free_map(all);
-	exit(0);
+	return (0);
 }
