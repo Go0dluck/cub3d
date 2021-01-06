@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:07:11 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/05 22:25:35 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/06 10:19:18 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	check_line_map(char *str_map)
 	str = ft_split(str_map, ' ');
 	while (str[++i])
 	{
-		if (str[i][0] && str[i][ft_strlen(str[i]) - 1] != '1')
+		if (str[i][0] != '1' || str[i][ft_strlen(str[i]) - 1] != '1')
 		{
 			free_split(str);
 			ft_error("Error\nКарта не закрыта");
