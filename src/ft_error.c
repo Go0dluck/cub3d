@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 23:13:56 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/02 12:37:33 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/05 22:23:55 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	ft_error(char *str)
 {
-	write(1, "Error\n", 6);
+	//write(2, "Error\n", 6);
 	while (*str)
 	{
-		write(1, str, 1);
+		write(2, str, 1);
 		str++;
 	}
-	write(1, "\n", 1);
+	write(2, "\n", 1);
 	//free all
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:24:10 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/02 12:43:26 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/05 22:24:59 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	pars_ceilling(char **str, t_all *all)
 {
 	char **color;
 
+	all->col_c.kol > 0 ? ft_error("Error\nДубликат цвета потолка") : 0;
 	if (ft_split_size(str) == 2)
 	{
 		if (ft_split_size(color = ft_split(str[1], ',')) == 3)
 		{
+			all->col_c.kol++;
 			all->size_param++;
 			all->col_c.r = ft_atoi(color[0]);
 			all->col_c.r < 0 ? all->col_c.r = 0 : 0;
@@ -33,8 +35,8 @@ void	pars_ceilling(char **str, t_all *all)
 			free_split(color);
 		}
 		else
-			ft_error("Не верный формат RGB цвета потолка");
+			ft_error("Error\nНе верный формат RGB цвета потолка");
 	}
 	else
-		ft_error("Не верные параметры цвета потолка");
+		ft_error("Error\nНе верные параметры цвета потолка");
 }

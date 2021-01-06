@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:23:00 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/02 12:44:08 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/05 22:25:07 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void	pars_floor(char **str, t_all *all)
 {
 	char **color;
 
+	all->col_f.kol > 0 ? ft_error("Error\nДубликат цвета пола") : 0;
 	if (ft_split_size(str) == 2)
 	{
 		if (ft_split_size(color = ft_split(str[1], ',')) == 3)
 		{
+			all->col_f.kol++;
 			all->size_param++;
 			all->col_f.r = ft_atoi(color[0]);
 			all->col_f.r < 0 ? all->col_f.r = 0 : 0;
@@ -33,9 +35,8 @@ void	pars_floor(char **str, t_all *all)
 			free_split(color);
 		}
 		else
-			ft_error("Не верный формат RGB цвета пола");
+			ft_error("Error\nНе верный формат RGB цвета пола");
 	}
 	else
-		ft_error("Не верные параметры цвета пола");
+		ft_error("Error\nНе верные параметры цвета пола");
 }
-

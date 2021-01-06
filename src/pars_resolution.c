@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:18:52 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/03 14:04:53 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/05 22:25:48 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	pars_resolution(char **str, t_all *all)
 {
+	all->mlx.w != 0 ? ft_error("Error\nДубликат размера окна") : 0;
 	if (ft_split_size(str) == 3)
 	{
 		all->size_param++;
@@ -23,5 +24,5 @@ void	pars_resolution(char **str, t_all *all)
 		all->mlx.h <= 0 || all->mlx.h > 1080 ? all->mlx.h = 1080 : 0;
 	}
 	else
-		ft_error("Не верные параметры экрана");
+		ft_error("Error\nНе верные параметры экрана");
 }
