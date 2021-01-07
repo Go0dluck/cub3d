@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 21:24:23 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 23:52:53 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,25 @@ typedef struct		s_text
 	int				endian;
 }					t_text;
 
+typedef struct		s_floor
+{
+	double			rd_x0;
+	double			rd_y0;
+	double			rd_x1;
+	double			rd_y1;
+	int				p;
+	double			p_z;
+	double			r_dist;
+	double			f_sx;
+	double			f_sy;
+	double			f_x;
+	double			f_y;
+	int				c_x;
+	int				c_y;
+	int				tx;
+	int				ty;
+}					t_floor;
+
 typedef struct		s_ray
 {
 	double			d_x;
@@ -177,6 +196,7 @@ typedef struct		s_all
 	t_color			col_f;
 	t_color			col_c;
 	t_bmp			bmp;
+	t_floor			flor_cel;
 }					t_all;
 
 void				parser_file_map(int fd, t_all *all);
@@ -210,6 +230,7 @@ void				draw_blast(t_all *all);
 void				draw_sprites_bad(t_all *all);
 void				sort_sprites_bad(t_all *all);
 void				draw_vertical_sprite_bad(t_all *all, t_sprite sprite);
+void				struct_init(t_all *all);
 
 void				parser_file(int fd, t_all *all);
 void				pars_resolution(char **str, t_all *all);

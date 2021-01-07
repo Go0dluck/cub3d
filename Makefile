@@ -6,7 +6,7 @@
 #    By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/21 22:25:57 by ksharee           #+#    #+#              #
-#    Updated: 2021/01/07 20:40:40 by ksharee          ###   ########.fr        #
+#    Updated: 2021/01/07 23:53:30 by ksharee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS_BONUS		=	cub3d_bonus.c ft_putpixel_bonus.c get_next_line_bonus.c hook_bonus
 					pars_all_bonus.c pars_ceilling_color_bonus.c pars_floor_color_bonus.c pars_resolution_bonus.c pars_text_bonus.c \
 					pars_player_bonus.c pars_sprites_bonus.c draw_sprites_bonus.c draw_sprites2_bonus.c save_bitmap_bonus.c \
 					pars_map2_bonus.c raycast2_bonus.c ft_isnum_bonus.c raycast_floor_ceilling_bonus.c lifebar_bonus.c \
-					draw_sprites_bad_bonus.c draw_sprites2_bad_bonus.c
+					draw_sprites_bad_bonus.c draw_sprites2_bad_bonus.c struct_init_bonus.c
 OBJS			=	$(addprefix $(PATH_OBJ)/, $(SRCS:.c=.o))
 OBJS_BONUS		=	$(addprefix $(PATH_OBJ)/, $(SRCS_BONUS:.c=.o))
 INCS			=	$(addprefix $(PATH_INC)/, cub3d.h)

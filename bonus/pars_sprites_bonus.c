@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 23:41:27 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 20:46:03 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 23:50:01 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,24 @@ void	parser_sprites(t_all *all)
 	int i;
 	int ii;
 
-	i = 0;
-	ii = 0;
-	y = 0;
-	if (!(all->sprs = malloc(sizeof(t_sprite) * all->size_sprite)))
-		ft_error("Ошибка malloc спрайтов", all);
-	if (!(all->sprs_bad = malloc(sizeof(t_sprite) * all->size_sprite_bad)))
-		ft_error("Ошибка malloc спрайтов", all);
-	while (all->map[y])
+	i = -1;
+	ii = -1;
+	y = -1;
+	while (all->map[++y])
 	{
-		x = 0;
-		while (all->map[y][x])
+		x = -1;
+		while (all->map[y][++x])
 		{
 			if (all->map[y][x] == '2' || all->map[y][x] == '3')
 			{
-				all->sprs[i].x = (double)x + 0.5;
+				all->sprs[++i].x = (double)x + 0.5;
 				all->sprs[i].y = (double)y + 0.5;
-				i++;
 			}
 			if (all->map[y][x] == '4')
 			{
-				all->sprs_bad[ii].x = (double)x + 0.5;
+				all->sprs_bad[++ii].x = (double)x + 0.5;
 				all->sprs_bad[ii].y = (double)y + 0.5;
-				ii++;
 			}
-			x++;
 		}
-		y++;
 	}
 }
