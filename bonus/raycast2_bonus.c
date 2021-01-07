@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 21:13:03 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/06 23:16:47 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:00:29 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ void	draw_side(t_all *all, int x)
 			all->t_s.color = (*(int *)(all->t_no.addr + ((all->t_s.t_x +
 				(all->t_s.t_y * 64)) * (all->t_no.bpp / 8))));
 		else if (all->ray.side == 1)
-			all->t_s.color = (*(int *)(all->t_so.addr + ((all->t_s.t_x +
-				(all->t_s.t_y * 64)) * (all->t_so.bpp / 8))));
+			all->t_s.color = (*(int *)(all->t_no.addr + ((all->t_s.t_x +
+				(all->t_s.t_y * 64)) * (all->t_no.bpp / 8))));
 		else if (all->ray.side == 2)
-			all->t_s.color = (*(int *)(all->t_we.addr + ((all->t_s.t_x +
-				(all->t_s.t_y * 64)) * (all->t_we.bpp / 8))));
+			all->t_s.color = (*(int *)(all->t_no.addr + ((all->t_s.t_x +
+				(all->t_s.t_y * 64)) * (all->t_no.bpp / 8))));
 		else if (all->ray.side == 3)
-			all->t_s.color = (*(int *)(all->t_ea.addr + ((all->t_s.t_x +
-				(all->t_s.t_y * 64)) * (all->t_ea.bpp / 8))));
+			all->t_s.color = (*(int *)(all->t_no.addr + ((all->t_s.t_x +
+				(all->t_s.t_y * 64)) * (all->t_no.bpp / 8))));
+		all->t_s.color = shade_color(all->t_s.color, all->ray.w_dist / 1.5);
 		ft_putpixel(all, x, y, all->t_s.color);
 		y++;
 	}
@@ -40,21 +41,7 @@ void	draw_side(t_all *all, int x)
 
 void	verline(int x, t_all *all)
 {
-	int y;
-
-	y = 0;
-	while (y < all->ray.d_s)
-	{
-		ft_putpixel(all, x, y, create_rgb_c(all));
-		y++;
-	}
 	draw_side(all, x);
-	y = all->ray.d_e;
-	while (y < all->mlx.h)
-	{
-		ft_putpixel(all, x, y, create_rgb_f(all));
-		y++;
-	}
 }
 
 void	texture_seting(t_all *all)

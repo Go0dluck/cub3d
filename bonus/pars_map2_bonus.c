@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 20:07:11 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 00:28:09 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 20:21:23 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_char_map(char **str, int i, int ii, t_all *all)
 			str[i][ii] != '0' && str[i][ii] != '2' &&
 			str[i][ii] != 'S' && str[i][ii] != 'N' &&
 			str[i][ii] != 'W' && str[i][ii] != 'E' &&
-			str[i][ii] != '3')
+			str[i][ii] != '3' && str[i][ii] != '4')
 		{
 			free_split(str);
 			ft_error("Не допустимые символы в карте", all);

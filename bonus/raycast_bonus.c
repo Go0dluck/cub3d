@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:41:01 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 00:50:11 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:00:06 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,12 +98,13 @@ void	raycast(t_all *all)
 {
 	int x;
 
-	x = 0;
+	x = -1;
 	all->mlx.img = mlx_new_image(all->mlx.mlx, all->mlx.w, all->mlx.h);
 	all->mlx.addr = mlx_get_data_addr(all->mlx.img, &all->mlx.bits_per_pixel,
 		&all->mlx.line_length, &all->mlx.endian);
 	all->ray.z_buf = malloc(sizeof(double) * all->mlx.w);
-	while (x < all->mlx.w)
+	raycast_floor_ceilling(all);
+	while (++x < all->mlx.w)
 	{
 		ray(x, all);
 		ray_size(all);
@@ -112,9 +113,11 @@ void	raycast(t_all *all)
 		all->ray.z_buf[x] = all->ray.w_dist;
 		texture_seting(all);
 		verline(x, all);
-		x++;
 	}
 	draw_sprites(all);
+	draw_sprites_bad(all);
+	draw_lifebar(all);
+	all->blast == 1 ? draw_blast(all) : 0;
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->mlx.img, 0, 0);
 	all->save == 0 ? mlx_destroy_image(all->mlx.mlx, all->mlx.img) : 0;
 	free(all->ray.z_buf);

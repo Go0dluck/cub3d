@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 20:21:24 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 01:10:35 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 15:20:05 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	draw_sprites(t_all *all)
 		all->sprs[i].spr_dist = ((all->plr.x - all->sprs[i].x) *
 			(all->plr.x - all->sprs[i].x) + (all->plr.y - all->sprs[i].y) *
 				(all->plr.y - all->sprs[i].y));
-	//printf("%f %f\n", all->sprs[i].y, all->sprs[i].x);
 	sort_sprites(all);
 	i = -1;
 	while (++i < all->size_sprite)

@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 21:21:29 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/06 23:16:00 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 22:02:38 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ void	free_struct(t_all *all)
 	free(all->t_we.path);
 	free(all->t_ea.path);
 	free(all->t_spr.path);
+	free(all->t_f.path);
+	free(all->t_c.path);
 	free(all->sprs);
-	all->t_spr.img != NULL ?
-		mlx_destroy_image(all->mlx.mlx, all->t_spr.img) : 0;
+	all->t_c.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_c.img) : 0;
+	all->t_spr.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_spr.img)
+		: 0;
 	all->t_no.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_no.img) : 0;
 	all->t_so.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_so.img) : 0;
 	all->t_we.img != NULL ? mlx_destroy_image(all->mlx.mlx, all->t_we.img) : 0;

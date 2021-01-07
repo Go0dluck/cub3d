@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 12:46:07 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 21:24:23 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,19 +148,32 @@ typedef struct		s_all
 	int				size_map;
 	int				save;
 	int				size_param;
+	int				size_sprite_bad;
 	int				size_sprite;
+	int				blast;
 	t_plr			plr;
 	t_mlx			mlx;
 	t_ray			ray;
 	t_text_set		t_s;
+	t_text_set		life_s;
+	t_text_set		gun_s;
+	t_text_set		blast_s;
+	t_text			t_f;
+	t_text			t_c;
 	t_text			t_no;
 	t_text			t_so;
 	t_text			t_we;
 	t_text			t_ea;
 	t_text			t_spr;
 	t_text			t_spr2;
+	t_text			t_spr_bad;
+	t_text			t_life;
+	t_text			t_blast;
+	t_text			t_gun;
 	t_sprite		*sprs;
 	t_sprite_set	spr_s;
+	t_sprite		*sprs_bad;
+	t_sprite_set	sprbad_s;
 	t_color			col_f;
 	t_color			col_c;
 	t_bmp			bmp;
@@ -190,6 +203,13 @@ void				texture_seting(t_all *all);
 void				verline(int x, t_all *all);
 int					ft_isnum(char *str);
 int					ft_isnum_comma(char *str);
+void				raycast_floor_ceilling(t_all *all);
+unsigned int		shade_color(unsigned int color, double dist);
+void				draw_lifebar(t_all *all);
+void				draw_blast(t_all *all);
+void				draw_sprites_bad(t_all *all);
+void				sort_sprites_bad(t_all *all);
+void				draw_vertical_sprite_bad(t_all *all, t_sprite sprite);
 
 void				parser_file(int fd, t_all *all);
 void				pars_resolution(char **str, t_all *all);

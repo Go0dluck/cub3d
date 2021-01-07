@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:40:52 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 14:11:54 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 21:40:16 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,18 @@ void	struct_init(t_all *all)
 	all->t_s.t_h = 64;
 	all->spr_s.s_w = 64;
 	all->spr_s.s_h = 64;
+	all->sprbad_s.s_w = 128;
+	all->sprbad_s.s_h = 128;
+	all->life_s.t_w = 270;
+	all->life_s.t_h = 120;
+	all->gun_s.t_w = 250;
+	all->gun_s.t_h = 250;
+	all->blast_s.t_w = 100;
+	all->blast_s.t_h = 100;
+	all->blast = 0;
 	all->size_param = 0;
 	all->size_sprite = 0;
+	all->size_sprite_bad = 0;
 	all->mlx.w = 0;
 	all->mlx.h = 0;
 	all->col_f.kol = 0;
@@ -30,14 +40,25 @@ void	struct_init(t_all *all)
 	all->t_so.img = NULL;
 	all->t_we.img = NULL;
 	all->t_spr.img = NULL;
+	all->t_spr_bad.img = NULL;
+	all->t_c.img = NULL;
+	all->t_f.img = NULL;
+	all->t_life.img = NULL;
+	all->t_gun.img = NULL;
+	all->t_blast.img = NULL;
+	all->t_spr_bad.img = NULL;
 	all->t_spr2.img = NULL;
 	all->t_no.path = NULL;
+	all->t_c.path = NULL;
+	all->t_f.path = NULL;
 	all->t_so.path = NULL;
 	all->t_we.path = NULL;
 	all->t_ea.path = NULL;
 	all->t_spr.path = NULL;
 	all->t_spr2.path = NULL;
+	all->t_spr_bad.path = NULL;
 	all->sprs = NULL;
+	all->sprs_bad = NULL;
 	all->map = NULL;
 }
 
