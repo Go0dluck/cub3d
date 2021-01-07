@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:19:35 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 00:26:54 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 14:13:17 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	parser_file_char(t_all *all, char **str)
 	ft_strcmp(str[0], "C") == 0 ? pars_ceilling(str, all) : 0;
 	ft_strcmp(str[0], "NO") == 0 || ft_strcmp(str[0], "SO") == 0 ||
 		ft_strcmp(str[0], "WE") == 0 || ft_strcmp(str[0], "EA") == 0 ||
-		ft_strcmp(str[0], "S") == 0 || ft_strcmp(str[0], "S2") == 0 ? pars_texture_path(str, all) : 0;
+		ft_strcmp(str[0], "S") == 0 || ft_strcmp(str[0], "S2") == 0 ?
+			pars_texture_path(str, all) : 0;
 }
 
 void	parser_file(int fd, t_all *all)
