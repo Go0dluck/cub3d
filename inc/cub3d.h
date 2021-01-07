@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/06 21:20:21 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/07 11:59:20 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ void				set_text_sprite(t_all *all, char *path);
 void				texture_seting(t_all *all);
 void				verline(int x, t_all *all);
 int					ft_isnum(char *str);
+int					ft_isnum_comma(char *str);
 
 void				parser_file(int fd, t_all *all);
 void				pars_resolution(char **str, t_all *all);

@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:40:52 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/06 19:52:05 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/06 23:37:01 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,5 @@ int		main(int agrc, char **agrv)
 		ft_init(&all, check_name(agrv[1], &all), 1);
 	}
 	agrc > 3 ? ft_error("Много параметров", &all) : 0;
+	return (0);
 }
