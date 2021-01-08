@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/04 20:21:24 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 15:20:05 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 18:58:36 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	camera_transform(t_all *all, t_sprite sprite)
 
 void	sprite_width(t_all *all)
 {
-	all->spr_s.sp_w = abs((int)(all->mlx.h / (all->spr_s.trfy)));
+	all->spr_s.sp_w = abs((int)(all->mlx.h / (all->spr_s.trfy))) / uDiv;
 	all->spr_s.dr_sx = -all->spr_s.sp_w / 2 + all->spr_s.spscrx;
 	if (all->spr_s.dr_sx < 0)
 		all->spr_s.dr_sx = 0;
@@ -39,11 +39,12 @@ void	sprite_width(t_all *all)
 
 void	sprite_height(t_all *all)
 {
-	all->spr_s.sp_h = abs((int)(all->mlx.h / (all->spr_s.trfy)));
-	all->spr_s.dr_sy = -all->spr_s.sp_h / 2 + all->mlx.h / 2;
+	all->spr_s.vms = (int)(vMove / all->spr_s.trfy) + all->ray.pitch;
+	all->spr_s.sp_h = abs((int)(all->mlx.h / (all->spr_s.trfy))) / vDiv;
+	all->spr_s.dr_sy = -all->spr_s.sp_h / 2 + all->mlx.h / 2 + all->spr_s.vms;
 	if (all->spr_s.dr_sy < 0)
 		all->spr_s.dr_sy = 0;
-	all->spr_s.dr_ey = all->spr_s.sp_h / 2 + all->mlx.h / 2;
+	all->spr_s.dr_ey = all->spr_s.sp_h / 2 + all->mlx.h / 2 + all->spr_s.vms;
 	if (all->spr_s.dr_ey >= all->mlx.h)
 		all->spr_s.dr_ey = all->mlx.h - 1;
 }

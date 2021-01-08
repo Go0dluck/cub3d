@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:47:21 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 21:54:31 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 16:35:30 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,17 @@ void	move_left_right(t_all *all, int i)
 
 int		ft_hook(int keycode, t_all *all)
 {
+	//printf("%d\n", keycode);
+	if (keycode == 65362) // up
+	{
+		all->ray.pitch += 400 * MS;
+		all->ray.pitch > 200 ? all->ray.pitch = 200 : 0;
+	}
+	if (keycode == 65364) // down
+	{
+		all->ray.pitch -= 400 * MS;
+		all->ray.pitch < -200 ? all->ray.pitch = -200 : 0;
+	}
 	if (keycode == 65507)
 	{
 		all->blast = 1;

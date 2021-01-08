@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:41:01 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 22:00:06 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 19:21:13 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	wall_dist(t_all *all)
 		all->ray.w_dist = (all->ray.m_y - all->plr.y +
 			(1 - all->ray.s_y) / 2) / all->ray.r_dy;
 	all->ray.l_h = (int)(all->mlx.h / all->ray.w_dist);
-	all->ray.d_s = -all->ray.l_h / 2 + all->mlx.h / 2;
+	all->ray.d_s = -all->ray.l_h / 2 + all->mlx.h / 2 + all->ray.pitch;
 	if (all->ray.d_s < 0)
 		all->ray.d_s = 0;
-	all->ray.d_e = all->ray.l_h / 2 + all->mlx.h / 2;
+	all->ray.d_e = all->ray.l_h / 2 + all->mlx.h / 2 + all->ray.pitch;
 	if (all->ray.d_e >= all->mlx.h)
 		all->ray.d_e = all->mlx.h - 1;
 }
@@ -115,7 +115,6 @@ void	raycast(t_all *all)
 		verline(x, all);
 	}
 	draw_sprites(all);
-	draw_sprites_bad(all);
 	draw_lifebar(all);
 	all->blast == 1 ? draw_blast(all) : 0;
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->mlx.img, 0, 0);

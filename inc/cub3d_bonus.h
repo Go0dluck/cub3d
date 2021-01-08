@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 23:52:53 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 19:15:31 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 # define CUB3D_BONUS_H
 # define MS 0.2
 # define BUFFER_SIZE 1000
+# define uDiv 1
+# define vDiv 1
+# define vMove 0.0
 # include <stdio.h>
+# include <stdbool.h>
 # include <fcntl.h>
 # include <signal.h>
 # include <math.h>
@@ -35,9 +39,9 @@ typedef struct		s_bmp
 
 typedef struct		s_sprite
 {
-	double			x;
-	double			y;
-	double			spr_dist;
+	float			x;
+	float			y;
+	float			spr_dist;
 }					t_sprite;
 
 typedef struct		s_color
@@ -50,11 +54,12 @@ typedef struct		s_color
 
 typedef struct		s_sprite_set
 {
-	double			spx;
-	double			spy;
-	double			invdet;
-	double			trfx;
-	double			trfy;
+	int				vms;
+	float			spx;
+	float			spy;
+	float			invdet;
+	float			trfx;
+	float			trfy;
 	int				spscrx;
 	int				sp_h;
 	int				dr_sy;
@@ -76,10 +81,10 @@ typedef struct		s_text_set
 	int				t_h;
 	int				t_x;
 	int				t_y;
-	double			step;
-	double			t_p;
+	float			step;
+	float			t_p;
 	unsigned int	color;
-	double			wallx;
+	float			wallx;
 }					t_text_set;
 
 typedef struct		s_text
@@ -96,17 +101,18 @@ typedef struct		s_text
 
 typedef struct		s_floor
 {
-	double			rd_x0;
-	double			rd_y0;
-	double			rd_x1;
-	double			rd_y1;
+	bool			is_floor;
+	float			rd_x0;
+	float			rd_y0;
+	float			rd_x1;
+	float			rd_y1;
 	int				p;
-	double			p_z;
-	double			r_dist;
-	double			f_sx;
-	double			f_sy;
-	double			f_x;
-	double			f_y;
+	float			p_z;
+	float			r_dist;
+	float			f_sx;
+	float			f_sy;
+	float			f_x;
+	float			f_y;
 	int				c_x;
 	int				c_y;
 	int				tx;
@@ -115,21 +121,22 @@ typedef struct		s_floor
 
 typedef struct		s_ray
 {
-	double			d_x;
-	double			d_y;
-	double			p_x;
-	double			p_y;
-	double			pl_x;
-	double			pl_y;
-	double			c_x;
-	double			r_dx;
-	double			r_dy;
-	double			d_dx;
-	double			d_dy;
-	double			s_dx;
-	double			s_dy;
-	double			w_dist;
-	double			*z_buf;
+	float			pitch;
+	float			d_x;
+	float			d_y;
+	float			p_x;
+	float			p_y;
+	float			pl_x;
+	float			pl_y;
+	float			c_x;
+	float			r_dx;
+	float			r_dy;
+	float			d_dx;
+	float			d_dy;
+	float			s_dx;
+	float			s_dy;
+	float			w_dist;
+	float			*z_buf;
 	int				m_x;
 	int				m_y;
 	int				s_x;
@@ -157,8 +164,8 @@ typedef struct		s_mlx
 typedef struct		s_plr
 {
 	char			position;
-	double			x;
-	double			y;
+	float			x;
+	float			y;
 }					t_plr;
 
 typedef struct		s_all
@@ -167,7 +174,6 @@ typedef struct		s_all
 	int				size_map;
 	int				save;
 	int				size_param;
-	int				size_sprite_bad;
 	int				size_sprite;
 	int				blast;
 	t_plr			plr;
@@ -224,13 +230,11 @@ void				verline(int x, t_all *all);
 int					ft_isnum(char *str);
 int					ft_isnum_comma(char *str);
 void				raycast_floor_ceilling(t_all *all);
-unsigned int		shade_color(unsigned int color, double dist);
+unsigned int		shade_color(unsigned int color, float dist);
 void				draw_lifebar(t_all *all);
 void				draw_blast(t_all *all);
-void				draw_sprites_bad(t_all *all);
-void				sort_sprites_bad(t_all *all);
-void				draw_vertical_sprite_bad(t_all *all, t_sprite sprite);
 void				struct_init(t_all *all);
+void				pars_bonus(t_all *all);
 
 void				parser_file(int fd, t_all *all);
 void				pars_resolution(char **str, t_all *all);

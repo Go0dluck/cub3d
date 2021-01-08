@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/22 09:41:23 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 23:48:41 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 19:14:31 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	make_map(t_list **head, int size, t_all *all)
 	check_map(all);
 	parser_player(all);
 	all->sprs = malloc(sizeof(t_sprite) * all->size_sprite);
-	all->sprs_bad = malloc(sizeof(t_sprite) * all->size_sprite_bad);
 	parser_sprites(all);
 }
 

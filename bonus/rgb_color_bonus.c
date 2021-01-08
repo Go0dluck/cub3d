@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 22:45:09 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 21:59:29 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 18:33:40 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int				create_rgb_c(t_all *all)
 	return (all->col_c.r << 16 | all->col_c.g << 8 | all->col_c.b);
 }
 
-unsigned int	shade_color(unsigned int color, double dist)
+unsigned int	shade_color(unsigned int color, float dist)
 {
 	unsigned int	i;
 

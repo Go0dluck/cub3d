@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 23:52:16 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 23:52:34 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 19:15:43 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	struct_init(t_all *all)
 	all->blast = 0;
 	all->size_param = 0;
 	all->size_sprite = 0;
-	all->size_sprite_bad = 0;
 	all->mlx.w = 0;
 	all->mlx.h = 0;
 	all->col_f.kol = 0;
 	all->col_c.kol = 0;
+	all->ray.pitch = 0;
 	struct_init_next(all);
 }

@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 21:13:03 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 22:00:29 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 16:26:44 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	texture_seting(t_all *all)
 	if ((all->ray.side == 2 || all->ray.side == 3) && all->ray.r_dy < 0)
 		all->t_s.t_x = all->t_s.t_w - all->t_s.t_x - 1;
 	all->t_s.step = 1.0 * all->t_s.t_h / all->ray.l_h;
-	all->t_s.t_p = (all->ray.d_s - all->mlx.h / 2 +
-		all->ray.l_h / 2) * all->t_s.step;
+	all->t_s.t_p = (all->ray.d_s - all->ray.pitch
+		- all->mlx.h / 2 + all->ray.l_h / 2) * all->t_s.step;
 }

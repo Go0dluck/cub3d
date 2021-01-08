@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:31:44 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 20:06:14 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 19:18:32 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ void	draw_next(t_all *all, t_sprite sprite)
 {
 	int	y;
 
-	y = all->spr_s.dr_sy;
-	while (y < all->spr_s.dr_ey)
+	y = all->spr_s.dr_sy - 1;
+	while (++y < all->spr_s.dr_ey)
 	{
-		all->spr_s.d = (y) * 256 - all->mlx.h * 128 +
+		all->spr_s.d = (y - all->spr_s.vms) * 256 - all->mlx.h * 128 +
 			all->spr_s.sp_h * 128;
-		all->spr_s.t_y = ((all->spr_s.d *
-			all->spr_s.s_h) / all->spr_s.sp_h) / 256;
+		all->spr_s.t_y = ((all->spr_s.d * all->spr_s.s_h) /
+			all->spr_s.sp_h) / 256;
 		if (all->map[(int)sprite.y][(int)sprite.x] == '2')
 			all->t_s.color = (*(int *)(all->t_spr.addr +
 				((all->spr_s.t_x + (all->spr_s.t_y * all->spr_s.s_w)) *
@@ -53,10 +53,13 @@ void	draw_next(t_all *all, t_sprite sprite)
 			all->t_s.color = (*(int *)(all->t_spr2.addr +
 				((all->spr_s.t_x + (all->spr_s.t_y * all->spr_s.s_w)) *
 				(all->t_spr2.bpp / 8))));
+		else if (all->map[(int)sprite.y][(int)sprite.x] == '4')
+			all->t_s.color = (*(int *)(all->t_spr_bad.addr +
+				((all->spr_s.t_x + (all->spr_s.t_y * all->spr_s.s_w)) *
+				(all->t_spr_bad.bpp / 8))));
 		all->t_s.color = shade_color(all->t_s.color, sprite.spr_dist / 3);
 		if ((all->t_s.color & 0x00FFFFFF) != 0)
 			ft_putpixel(all, all->spr_s.stripe, y, all->t_s.color);
-		y++;
 	}
 }
 

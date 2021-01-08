@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 23:41:27 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 23:50:01 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 19:20:05 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,19 @@ void	parser_sprites(t_all *all)
 	int	x;
 	int	y;
 	int i;
-	int ii;
 
 	i = -1;
-	ii = -1;
 	y = -1;
 	while (all->map[++y])
 	{
 		x = -1;
 		while (all->map[y][++x])
 		{
-			if (all->map[y][x] == '2' || all->map[y][x] == '3')
+			if (all->map[y][x] == '2' || all->map[y][x] == '3'
+				|| all->map[y][x] == '4')
 			{
 				all->sprs[++i].x = (double)x + 0.5;
 				all->sprs[i].y = (double)y + 0.5;
-			}
-			if (all->map[y][x] == '4')
-			{
-				all->sprs_bad[++ii].x = (double)x + 0.5;
-				all->sprs_bad[ii].y = (double)y + 0.5;
 			}
 		}
 	}
