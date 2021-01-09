@@ -6,7 +6,7 @@
 #    By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/21 22:25:57 by ksharee           #+#    #+#              #
-#    Updated: 2021/01/08 21:26:15 by ksharee          ###   ########.fr        #
+#    Updated: 2021/01/09 16:11:33 by ksharee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ PATH_OBJ		=	./obj
 PATH_LIBFT		=	libft
 PATH_LIBMLX		=	libmlx
 
-SRCS			=	cub3d.c ft_putpixel.c get_next_line.c hook.c \
+SRCS			=	cub3d.c ft_putpixel.c gnl.c hook.c \
 					pars_map.c raycast.c ft_error.c free_all.c rgb_color.c \
 					pars_all.c pars_ceilling_color.c pars_floor_color.c pars_resolution.c pars_text.c \
 					pars_player.c pars_sprites.c draw_sprites.c draw_sprites2.c save_bitmap.c \
@@ -30,7 +30,7 @@ SRCS_BONUS		=	cub3d_bonus.c ft_putpixel_bonus.c gnl_bonus.c hook_bonus.c \
 					pars_all_bonus.c pars_ceilling_color_bonus.c pars_floor_color_bonus.c pars_resolution_bonus.c pars_text_bonus.c \
 					pars_player_bonus.c pars_sprites_bonus.c draw_sprites_bonus.c draw_sprites2_bonus.c save_bitmap_bonus.c \
 					pars_map2_bonus.c raycast2_bonus.c ft_isnum_bonus.c raycast_floor_ceilling_bonus.c lifebar_bonus.c \
-					struct_init_bonus.c
+					struct_init_bonus.c hook_mouse_bonus.c del_sprites_bonus.c
 OBJS			=	$(addprefix $(PATH_OBJ)/, $(SRCS:.c=.o))
 OBJS_BONUS		=	$(addprefix $(PATH_OBJ)/, $(SRCS_BONUS:.c=.o))
 INCS			=	$(addprefix $(PATH_INC)/, cub3d.h)

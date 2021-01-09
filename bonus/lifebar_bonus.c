@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 18:03:21 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 22:51:45 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/09 11:31:42 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,27 @@ void	draw_lifebar(t_all *all)
 {
 	int				x;
 	int				y;
+	int				size;
 	unsigned int	color;
 
-	y = 0;
-	while (y < all->life_s.t_h)
+	size = 0;
+	while (size < all->heart_size)
 	{
-		x = 0;
-		while (x < all->life_s.t_w)
+		y = 0;
+		while (y < all->life_s.t_h)
 		{
-			color = (*(int *)(all->t_life.addr + (y *
-				all->t_life.line_length + x * (all->t_life.bpp / 8))));
-			if ((color & 0x00FFFFFF) != 0)
-				ft_putpixel(all, x, y, color);
-			x++;
+			x = 0;
+			while (x < all->life_s.t_w)
+			{
+				color = (*(int *)(all->t_life.addr + (y *
+					all->t_life.line_length + x * (all->t_life.bpp / 8))));
+				if ((color & 0x00FFFFFF) != 0)
+					ft_putpixel(all, x + size * 64, y, color);
+				x++;
+			}
+			y++;
 		}
-		y++;
+		size++;
 	}
 	draw_gun(all);
 }

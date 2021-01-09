@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/01 23:19:35 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 18:55:41 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/09 14:02:50 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	pars_bonus(t_all *all)
 {
 	all->t_life.img = mlx_xpm_file_to_image(all->mlx.mlx,
-		"./pics/lifebar.xpm", &all->t_life.img_w, &all->t_life.img_h);
+		"./pics/beer_small.xpm", &all->t_life.img_w, &all->t_life.img_h);
 	all->t_life.addr = mlx_get_data_addr(all->t_life.img,
 		&all->t_life.bpp, &all->t_life.line_length, &all->t_life.endian);
 	all->t_gun.img = mlx_xpm_file_to_image(all->mlx.mlx,
@@ -27,10 +27,15 @@ void	pars_bonus(t_all *all)
 	all->t_blast.addr = mlx_get_data_addr(all->t_blast.img,
 		&all->t_blast.bpp, &all->t_blast.line_length, &all->t_blast.endian);
 	all->t_spr_bad.img = mlx_xpm_file_to_image(all->mlx.mlx,
-		"./pics/freddy.xpm", &all->t_spr_bad.img_w, &all->t_spr_bad.img_h);
+		"./pics/gomer.xpm", &all->t_spr_bad.img_w, &all->t_spr_bad.img_h);
 	all->t_spr_bad.addr = mlx_get_data_addr(all->t_spr_bad.img,
 		&all->t_spr_bad.bpp, &all->t_spr_bad.line_length,
 		&all->t_spr_bad.endian);
+	all->dead.img = mlx_xpm_file_to_image(all->mlx.mlx,
+		"./pics/death.xpm", &all->dead.img_w, &all->dead.img_h);
+	all->dead.addr = mlx_get_data_addr(all->dead.img,
+		&all->dead.bpp, &all->dead.line_length,
+		&all->dead.endian);
 }
 
 void	parser_file_char(t_all *all, char **str)

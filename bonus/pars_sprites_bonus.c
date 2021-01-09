@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/03 23:41:27 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 19:20:05 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/09 11:04:03 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	parser_sprites(t_all *all)
 			{
 				all->sprs[++i].x = (double)x + 0.5;
 				all->sprs[i].y = (double)y + 0.5;
+				all->sprs[i].num = all->map[y][x];
 			}
 		}
 	}

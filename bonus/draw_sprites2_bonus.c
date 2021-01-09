@@ -6,31 +6,11 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:31:44 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 23:56:26 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/09 16:09:59 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d_bonus.h"
-
-void	del_sprites(t_all *all)
-{
-	t_sprite	*tmp;
-	int			new_size;
-
-	new_size = all->size_sprite;
-	if (new_size > 1)
-	{
-		tmp = malloc(sizeof(t_sprite) * new_size - 1);
-		while (new_size)
-		{
-			tmp[new_size - 1] = all->sprs[new_size - 1];
-			new_size--;
-		}
-		all->size_sprite--;
-		free(all->sprs);
-		all->sprs = tmp;
-	}
-}
 
 void	sort_sprites(t_all *all)
 {
@@ -66,9 +46,9 @@ void	draw_next(t_all *all, t_sprite sprite)
 		all->spr_s.t_y = ((all->spr_s.d * all->spr_s.s_h) /
 			all->spr_s.sp_h) / 256;
 		if (all->map[(int)sprite.y][(int)sprite.x] == '2')
-			all->t_s.color = (*(int *)(all->t_spr.addr +
+			all->t_s.color = (*(int *)(all->t_life.addr +
 				((all->spr_s.t_x + (all->spr_s.t_y * all->spr_s.s_w)) *
-				(all->t_spr.bpp / 8))));
+				(all->t_life.bpp / 8))));
 		else if (all->map[(int)sprite.y][(int)sprite.x] == '3')
 			all->t_s.color = (*(int *)(all->t_spr2.addr +
 				((all->spr_s.t_x + (all->spr_s.t_y * all->spr_s.s_w)) *
@@ -78,7 +58,7 @@ void	draw_next(t_all *all, t_sprite sprite)
 				((all->spr_s.t_x + (all->spr_s.t_y * all->spr_s.s_w)) *
 				(all->t_spr_bad.bpp / 8))));
 		all->t_s.color = shade_color(all->t_s.color, sprite.spr_dist / 3);
-		if ((all->t_s.color & 0x00FFFFFF) != 0)
+		if ((all->t_s.color & 0x00FFFFFF) != 0 && all->heart_size != 0)
 			ft_putpixel(all, all->spr_s.stripe, y, all->t_s.color);
 	}
 }

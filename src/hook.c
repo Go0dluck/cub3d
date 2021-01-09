@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:47:21 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/05 21:56:29 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/09 15:54:39 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	move_left_right(t_all *all, int i)
 int		ft_hook(int keycode, t_all *all)
 {
 	if (keycode == 65307)
-	//if (keycode == 53)
 	{
 		free_struct(all);
 		free_map(all);
@@ -87,16 +86,12 @@ int		ft_hook(int keycode, t_all *all)
 	else if (keycode == 100)
 		move_left_right(all, 1);
 	else if (keycode == 119)
-	//if (keycode == 126)
 		move_up_down(all, 0);
 	else if (keycode == 115)
-	//if (keycode == 125)
 		move_up_down(all, 1);
 	else if (keycode == 65361)
-	//if (keycode == 123)
 		left_right(all, -1);
 	else if (keycode == 65363)
-	//if (keycode == 124)
 		left_right(all, 1);
 	raycast(all);
 	return (0);

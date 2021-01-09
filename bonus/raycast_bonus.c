@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:41:01 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 21:26:03 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/09 13:09:25 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	raycast(t_all *all)
 		verline(x, all);
 	}
 	draw_sprites(all);
-	draw_lifebar(all);
+	all->heart_size != 0 ? draw_lifebar(all) : 0;
 	all->blast == 1 ? draw_blast(all) : 0;
 	mlx_put_image_to_window(all->mlx.mlx, all->mlx.win, all->mlx.img, 0, 0);
 	all->save == 0 ? mlx_destroy_image(all->mlx.mlx, all->mlx.img) : 0;

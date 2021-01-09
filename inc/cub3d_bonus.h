@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 23:32:22 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/09 16:11:24 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define CUB3D_BONUS_H
 # define MS 0.2
 # define BUFFER_SIZE 1000
-# define uDiv 1
-# define vDiv 1
-# define vMove 0.0
+# define UDIV 1
+# define VDIV 1
+# define VMOVE 0.0
 # include <stdio.h>
 # include <stdbool.h>
 # include <fcntl.h>
@@ -39,6 +39,7 @@ typedef struct		s_bmp
 
 typedef struct		s_sprite
 {
+	char			num;
 	float			x;
 	float			y;
 	float			spr_dist;
@@ -164,19 +165,20 @@ typedef struct		s_mlx
 typedef struct		s_plr
 {
 	char			position;
-	float			dir;
 	float			x;
 	float			y;
 }					t_plr;
 
 typedef struct		s_all
 {
+	bool			death;
 	char			**map;
 	int				size_map;
 	int				save;
 	int				size_param;
 	int				size_sprite;
 	int				blast;
+	int				heart_size;
 	t_plr			plr;
 	t_mlx			mlx;
 	t_ray			ray;
@@ -196,8 +198,10 @@ typedef struct		s_all
 	t_text			t_life;
 	t_text			t_blast;
 	t_text			t_gun;
+	t_text			dead;
 	t_sprite		*sprs;
 	t_sprite_set	spr_s;
+	t_sprite_set	death_s;
 	t_sprite		*sprs_bad;
 	t_sprite_set	sprbad_s;
 	t_color			col_f;
@@ -206,19 +210,18 @@ typedef struct		s_all
 	t_floor			flor_cel;
 }					t_all;
 
+void				del_sprites_gomer(t_all *all);
+void				draw_dead(t_all *all);
 void				parser_file_map(int fd, t_all *all);
 int					get_next_line(int fd, char **line);
 void				ft_error(char *str, t_all *all);
 void				raycast(t_all *all);
 int					ft_hook(int keycode, t_all *all);
 void				ft_putpixel(t_all *all, int x, int y, int color);
-void				texture(t_all *all);
 void				free_split(char **str);
 int					ft_split_size(char **str);
 void				free_struct(t_all *all);
 void				free_map(t_all *all);
-int					create_rgb_f(t_all *all);
-int					create_rgb_c(t_all *all);
 void				draw_sprites(t_all *all);
 void				save_screen(t_all *all);
 void				draw_vertical_sprite(t_all *all, t_sprite sprite);
@@ -229,15 +232,14 @@ void				set_text_sprite_two(t_all *all, char *path);
 void				texture_seting(t_all *all);
 void				verline(int x, t_all *all);
 int					ft_isnum(char *str);
-int					ft_isnum_comma(char *str);
 void				raycast_floor_ceilling(t_all *all);
 unsigned int		shade_color(unsigned int color, float dist);
 void				draw_lifebar(t_all *all);
 void				draw_blast(t_all *all);
 void				struct_init(t_all *all);
-void				pars_bonus(t_all *all);
 int					ft_hook_mouse(int button, int x, int y, t_all *all);
 void				del_sprites(t_all *all);
+void				left_right(t_all *all, int i);
 
 void				parser_file(int fd, t_all *all);
 void				pars_resolution(char **str, t_all *all);
