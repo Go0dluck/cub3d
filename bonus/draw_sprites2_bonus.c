@@ -6,11 +6,31 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 19:31:44 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 19:18:32 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 23:56:26 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d_bonus.h"
+
+void	del_sprites(t_all *all)
+{
+	t_sprite	*tmp;
+	int			new_size;
+
+	new_size = all->size_sprite;
+	if (new_size > 1)
+	{
+		tmp = malloc(sizeof(t_sprite) * new_size - 1);
+		while (new_size)
+		{
+			tmp[new_size - 1] = all->sprs[new_size - 1];
+			new_size--;
+		}
+		all->size_sprite--;
+		free(all->sprs);
+		all->sprs = tmp;
+	}
+}
 
 void	sort_sprites(t_all *all)
 {

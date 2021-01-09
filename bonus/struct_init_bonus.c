@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 23:52:16 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 19:15:43 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 21:15:05 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	struct_init(t_all *all)
 	all->gun_s.t_h = 250;
 	all->blast_s.t_w = 100;
 	all->blast_s.t_h = 100;
+	all->plr.dir = 20;
 	all->blast = 0;
 	all->size_param = 0;
 	all->size_sprite = 0;

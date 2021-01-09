@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:34:17 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 19:15:31 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 23:32:22 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct		s_mlx
 typedef struct		s_plr
 {
 	char			position;
+	float			dir;
 	float			x;
 	float			y;
 }					t_plr;
@@ -235,6 +236,8 @@ void				draw_lifebar(t_all *all);
 void				draw_blast(t_all *all);
 void				struct_init(t_all *all);
 void				pars_bonus(t_all *all);
+int					ft_hook_mouse(int button, int x, int y, t_all *all);
+void				del_sprites(t_all *all);
 
 void				parser_file(int fd, t_all *all);
 void				pars_resolution(char **str, t_all *all);

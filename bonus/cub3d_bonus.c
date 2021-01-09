@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/29 14:40:52 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/07 23:52:38 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 22:01:36 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ft_init(t_all *all, char *agrv, int save)
 	}
 	if (save == 0)
 	{
+		mlx_mouse_hook(all->mlx.win, ft_hook_mouse, all);
 		mlx_hook(all->mlx.win, 2, 1L << 0, ft_hook, all);
 		mlx_loop(all->mlx.mlx);
 	}

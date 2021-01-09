@@ -6,7 +6,7 @@
 /*   By: ksharee <ksharee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 09:47:21 by ksharee           #+#    #+#             */
-/*   Updated: 2021/01/08 16:35:30 by ksharee          ###   ########.fr       */
+/*   Updated: 2021/01/08 23:32:10 by ksharee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,34 @@ void	move_left_right(t_all *all, int i)
 			MS)][(int)all->plr.x] != '1')
 			all->plr.y += all->ray.pl_y * MS;
 	}
+}
+
+int		ft_hook_mouse(int button, int x, int y, t_all *all)
+{
+	if (x < all->mlx.w / 2 && button == 3)
+		left_right(all, -1);
+	if (x > all->mlx.w / 2 && button == 3)
+		left_right(all, 1);
+	if (y < all->mlx.h / 2 && button == 3)
+	{
+		all->ray.pitch += 400 * MS;
+		all->ray.pitch > 200 ? all->ray.pitch = 200 : 0;
+	}
+	if (y > all->mlx.h / 2 && button == 3)
+	{
+		all->ray.pitch -= 400 * MS;
+		all->ray.pitch < -200 ? all->ray.pitch = -200 : 0;
+	}
+	if (button == 1)
+	{
+		all->blast = 1;
+		raycast(all);
+		all->blast = 0;
+	}
+	if (button == 2)
+		del_sprites(all);
+	raycast(all);
+	return (0);
 }
 
 int		ft_hook(int keycode, t_all *all)
